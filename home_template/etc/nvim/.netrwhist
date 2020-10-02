@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/mnt/c/Users/glarkham/Projects/codeblocks/epc/AClient'
+let g:netrw_dirhist_2='/mnt/c/Users/glarkham/Projects/codeblocks/epc/Calculator/Heartbeat'
+let g:netrw_dirhist_3='/mnt/c/Users/glarkham/Projects/elixir/gorilla/.git'

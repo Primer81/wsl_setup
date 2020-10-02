@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# Disable dir highlights that don't play
+# well with the windows file system
+VAR=LS_COLORS
+export LS_COLORS=$LS_COLORS:'ow=1;34:'
+
+# Get default options arguments
+OPTS="${HOME}/var/lib/lw/opts"
+export CMD=("/usr/bin/env" "ls")
+. $OPTS
+
+# Execute
+#echo "${CMD[@]}"
+#declare -p CMD
+eval "${CMD[@]}"
+
+# Restore dir highlights
+export LS_COLORS=$VAR

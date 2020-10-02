@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+ORIGIN="$(pwd)"
+DIRS=(
+  ".local"
+  ".local/bin"
+  ".local/lib"
+
+  ".ssh"
+
+  "bin"
+  "bin/sys"
+
+  "etc"
+
+  "src"
+
+  "usr"
+
+  "var"
+  "var/data"
+  "var/lib"
+  "var/run"
+)
+WIN_HOME_RAW="$(cmd.exe /c "<nul set /p=%UserProfile%" 2>/dev/null)"
+WIN_HOME="$(wslpath $WIN_HOME_RAW)"
+WIN_DIRS=(
+  "Projects"
+  "AutoHotkey"
+)
+
+# Create linux home directories
+cd $HOME
+mkdir -pv "${DIRS[@]}"
+
+# Create windows home directories
+cd $WIN_HOME
+mkdir -pv "${WIN_DIRS[@]}"
+
+# Create symbolic links to windows directories
+cd "$HOME/var"
+ln -sfTv "$WIN_HOME/AppData"     "appdata"
+ln -sfTv "$WIN_HOME/Desktop"     "desktop"
+ln -sfTv "$WIN_HOME/Documents"   "docs"
+ln -sfTv "$WIN_HOME/Pictures"    "pics"
+ln -sfTv "$WIN_HOME/Downloads"   "downloads"
+cd "$HOME/src"
+ln -sfTv "$WIN_HOME/Projects"    "projects"
+ln -sfTv "$WIN_HOME/AutoHotkey"  "autohotkey"
+
+# Other symbolic links
+cd "$HOME"
+ln -sfTv "$HOME/etc" ".config"
+cd "$HOME/.local"
+ln -sfTv "$HOME/var/data" "share"
+
+# Return to origin
+cd $ORIGIN

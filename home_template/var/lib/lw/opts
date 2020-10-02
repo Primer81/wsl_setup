@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Add ignore arguments
+input="${HOME}/var/lib/lw/filter"
+while IFS= read -r line
+do
+  CMD+=("--ignore='$line'")
+done < "$input"
+
+# Add other arguments
+CMD+=("--group-directories")
+CMD+=("--color=always")
+CMD+=("-h")
+for i in "$@"
+do
+  CMD+=("$i")
+done

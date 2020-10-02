@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Install neovim
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt-get update
+sudo apt-get install neovim
+
+# Sync home environment template with home directory.
+# Will only replace older files if a destination
+# file already exist.
+rsync --update -r ./home_template/* $HOME/
+
